@@ -1,15 +1,10 @@
-import "dotenv/config";
+import app from './app';
+import env from './utils/validateEnv';
 import mongoose from "mongoose";
-import express from 'express';
 
-const app = express();
-const port = process.env.PORT;
+const port = env.PORT;
 
-app.get('/', (req, res) => {
-    res.send('Welcome to komboNation');
-});
-
-mongoose.connect(process.env.MONGODB_CONNECTION_STRING!)
+mongoose.connect(env.MONGODB_CONNECTION_STRING)
 .then(() => {
     console.log("Mongoose Connected");
     app.listen(port, () => {
